@@ -1,34 +1,27 @@
 "use strict";
-// ZMIENNA
 /*
-    ZMIENNA
-    LEKCJA
-    W TOKU
+const array: string[] = ["Hello", "World!", "It's", "Beautiful", "Day!"];
+
+// console.log(array[1]);
+// array.push("It's TS");
+
+// console.log(array[5], array);
+console.log(array);
+
+array.shift();
+console.log(array);
+
+array.pop();
+
+console.log(array);
 */
-let nazwaKtoraJestBardzoDobra = "";
-let nazwa_ktora_jest_bardzo_dobra = "";
-let _x10_ = 10;
-let _ = "";
-// STAŁA
-const g = 9.81;
-// TYPY
-// PRYMITYWNE
-// string
-let s = "String";
-// number
-let n = 150;
-// boolean
-let b = true; // false
-// false => undefined, null, 0, ""
-let empty = undefined;
-let a2;
-let b2 = null;
-let c2 = 0;
-// Złożone
-// tablica - array
-let array = [];
-let array2 = [];
-// obiekt - object
-let obj = {
-    "email": "domain@cos.pl"
+let a = "INDEX";
+const obj = {
+    4: "Four",
+    "email": "domain@email.pl",
+    false: "FAŁSZ",
+    [`${a}`]: "WARTOŚĆ"
 };
+console.log(obj);
+console.log(`Hello user ${a} ${obj}`);
+console.log("Hello user" + a + obj);
