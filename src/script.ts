@@ -1,53 +1,41 @@
+// INTERFACE oraz TYPE
 
-const emailInputElement: HTMLInputElement = document.getElementById('email') as HTMLInputElement;
-const passwordInputElement: HTMLInputElement = document.getElementById('password') as HTMLInputElement;
-
-const selectElement: HTMLSelectElement = document.getElementById("select") as HTMLSelectElement;
-
-const result: HTMLCollectionOf<HTMLDivElement> = document.getElementsByClassName("result") as HTMLCollectionOf<HTMLDivElement>;
-
-const form: HTMLFormElement = document.getElementById("form") as HTMLFormElement;
-const button: NodeListOf<HTMLButtonElement> = document.getElementsByName("button") as NodeListOf<HTMLButtonElement>;
-
-// OBSŁUGA SELECT
-let chosenValue: string = "";
-// Event - Zdarzenie
-// ONCHANGE
-selectElement.onchange = (event: any) => {
-    if (event.target === null) return;
-
-    console.log(event.target.value);
-    chosenValue = event.target.value;
+interface IUser {
+    email: string;
+    fullname: string;
+    age: number;
+    func: (index: number) => void;
 }
 
-// OBSŁUGA INPUTS
-
-let email: string = "";
-let password: string = "";
-
-emailInputElement.addEventListener("change", function(e: any) {
-    if (e.target === null) return;
-
-    email = e.target.value;
-});
-
-passwordInputElement.addEventListener("change", function(e: any) {
-    if (e.target === null) return;
-
-    password = e.target.value;
-});
-
-form.onsubmit = (e) => {
-    e.preventDefault();
+type TUser = {
+    email: string,
+    fullname: string,
+    age: number,
+    func: (index: number) => void
 }
 
-button[0].addEventListener("click", (e) => {
-    console.log(email, password, chosenValue);
+const user: TUser = {
+    email: "email",
+    fullname: "Bartłomiej Huza",
+    age: 20,
+    func: function(index) {
+        console.log(this.email, this.fullname, this.age);
+    }
+}
 
-    // console.log(result);
-    result[0].innerHTML = `
-        <p> ${email} </p>
-        <p> ${password} </p>
-        <h1> You have chosen ${chosenValue} </h1>
-    `;
-});
+// ENUM
+enum ELetter {
+    A = "A",
+    B = "B",
+    C = "Cebula",
+    D = "D",
+};
+
+console.log(ELetter.C);
+
+// UNIONS
+// | => SHIFT + \
+let nickname: string | string[] | number = 7867;
+
+let array: (string | number | boolean)[] = ["Hello", 123, false];
+let arr: string[] | number[] | boolean[] = ["Hello", "123" , "false"];
