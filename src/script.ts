@@ -1,58 +1,38 @@
-// GENERIC TYPES - Typy generyczna
+class Human {
+    // public, private, protected
 
-enum EAppCategory {
-    SPORT,
-    EDUCATION,
-    VIDEOS
+    public id: string;
+    public firstname: string;
+    protected lastname: string;
+    public age: number;
+    private isMarried: boolean;
+    private birthday: Date;
+
+    constructor(
+        id: string,
+        firstname: string,
+        lastname: string,
+        age: number,
+        isMarried: boolean,
+        birthday: Date,
+    ) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.isMarried = isMarried;
+        this.birthday = birthday;
+    }
 }
 
-interface IApp<T, K, V> {
-    id: string,
-    category: T
-}
+const john: Human = new Human(
+    "1",
+    "John",
+    "Smith",
+    40,
+    false,
+    new Date(),
+);
 
-const app: IApp<string | EAppCategory, number, boolean> = {
-    id: "1",
-    category: EAppCategory.EDUCATION
-};
-
-// FUNCTION
-
-function add<T, K>(arg1: T, arg2: K): string {
-    let a: T | null = null;
-
-    const text = `${arg1} + ${arg2}`;
-
-    a = arg1;
-
-    return text;
-}
-
-console.log(add<string, number>("Hello", 100))
-
-// PRACTICE;
-
-interface IServiceBenefits<T> {
-    economic: T[],
-    standard: T[],
-    premium: T[]
-}
-
-// CONNECTION DB
-const serviceBenefits1: IServiceBenefits<string> = {
-    economic: ["helo", "Oi"],
-    standard: [],
-    premium: ["Tylko", "dla", " bogatych"]
-} 
-
-const serviceBenefits2: IServiceBenefits<boolean> = {
-    economic: [false],
-    standard: [false],
-    premium: [true]
-} 
-
-const serviceBenefits3: IServiceBenefits<string[]> = {
-    economic: [["a"], ["b"], ["c"]],
-    standard: [["d"], ["e"], ["f"]],
-    premium: []
-} 
+console.log(john);
+console.log(john.id);
