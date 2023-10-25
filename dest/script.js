@@ -1,14 +1,29 @@
 "use strict";
-// function callMe(nr: number): void {
-//     console.log(` I call to you! ${nr}`);
+// function showHelloConsole(): void {
+//     console.log("hello world!");
 // }
-// callMe(15623156);
-// const data = (obj: Object) => {
-//     console.log(obj.email || "");
+// showHelloConsole();
+// console.log(showHelloConsole);
+// function showHello(): string {
+//     return "Hello Course TS";
 // }
-(function () {
-    console.log("ONLOADING, HELLO");
-})();
-(() => {
-    console.log("ONLOADING, HELLO");
-})();
+// let text = showHello();
+// console.log(text);
+// let age = (() => {
+//     return 30;
+// })();
+// console.log(age);
+// const add = (a: number, b: number): string => {
+//     let age = a + b;
+//     const msg = `You are ${age} years old!`;
+//     return msg;
+// }
+// console.log(add(15, 27));
+const obj = {
+    email: "bartlomiej.huza@gmail.com",
+    fullname: "Bartłomiej Huza",
+    func: () => {
+        // console.log(this);
+    }
+};
+obj.func();
