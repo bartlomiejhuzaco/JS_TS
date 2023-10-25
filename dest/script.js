@@ -1,29 +1,42 @@
 "use strict";
-// function showHelloConsole(): void {
-//     console.log("hello world!");
-// }
-// showHelloConsole();
-// console.log(showHelloConsole);
-// function showHello(): string {
-//     return "Hello Course TS";
-// }
-// let text = showHello();
-// console.log(text);
-// let age = (() => {
-//     return 30;
-// })();
-// console.log(age);
-// const add = (a: number, b: number): string => {
-//     let age = a + b;
-//     const msg = `You are ${age} years old!`;
-//     return msg;
-// }
-// console.log(add(15, 27));
-const obj = {
-    email: "bartlomiej.huza@gmail.com",
-    fullname: "Bartłomiej Huza",
-    func: () => {
-        // console.log(this);
-    }
+const emailInputElement = document.getElementById('email');
+const passwordInputElement = document.getElementById('password');
+const selectElement = document.getElementById("select");
+const result = document.getElementsByClassName("result");
+const form = document.getElementById("form");
+const button = document.getElementsByName("button");
+// OBSŁUGA SELECT
+let chosenValue = "";
+// Event - Zdarzenie
+// ONCHANGE
+selectElement.onchange = (event) => {
+    if (event.target === null)
+        return;
+    console.log(event.target.value);
+    chosenValue = event.target.value;
 };
-obj.func();
+// OBSŁUGA INPUTS
+let email = "";
+let password = "";
+emailInputElement.addEventListener("change", function (e) {
+    if (e.target === null)
+        return;
+    email = e.target.value;
+});
+passwordInputElement.addEventListener("change", function (e) {
+    if (e.target === null)
+        return;
+    password = e.target.value;
+});
+form.onsubmit = (e) => {
+    e.preventDefault();
+};
+button[0].addEventListener("click", (e) => {
+    console.log(email, password, chosenValue);
+    // console.log(result);
+    result[0].innerHTML = `
+        <p> ${email} </p>
+        <p> ${password} </p>
+        <h1> You have chosen ${chosenValue} </h1>
+    `;
+});

@@ -1,38 +1,53 @@
-// function showHelloConsole(): void {
-//     console.log("hello world!");
-// }
 
+const emailInputElement: HTMLInputElement = document.getElementById('email') as HTMLInputElement;
+const passwordInputElement: HTMLInputElement = document.getElementById('password') as HTMLInputElement;
 
-// showHelloConsole();
-// console.log(showHelloConsole);
+const selectElement: HTMLSelectElement = document.getElementById("select") as HTMLSelectElement;
 
-// function showHello(): string {
-//     return "Hello Course TS";
-// }
+const result: HTMLCollectionOf<HTMLDivElement> = document.getElementsByClassName("result") as HTMLCollectionOf<HTMLDivElement>;
 
-// let text = showHello();
-// console.log(text);
+const form: HTMLFormElement = document.getElementById("form") as HTMLFormElement;
+const button: NodeListOf<HTMLButtonElement> = document.getElementsByName("button") as NodeListOf<HTMLButtonElement>;
 
-// let age = (() => {
-//     return 30;
-// })();
-// console.log(age);
+// OBSŁUGA SELECT
+let chosenValue: string = "";
+// Event - Zdarzenie
+// ONCHANGE
+selectElement.onchange = (event: any) => {
+    if (event.target === null) return;
 
-// const add = (a: number, b: number): string => {
-//     let age = a + b;
-//     const msg = `You are ${age} years old!`;
-
-//     return msg;
-// }
-
-// console.log(add(15, 27));
-
-const obj = {
-    email: "bartlomiej.huza@gmail.com",
-    fullname: "Bartłomiej Huza",
-    func: () => {
-        // console.log(this);
-    }
+    console.log(event.target.value);
+    chosenValue = event.target.value;
 }
 
-obj.func();
+// OBSŁUGA INPUTS
+
+let email: string = "";
+let password: string = "";
+
+emailInputElement.addEventListener("change", function(e: any) {
+    if (e.target === null) return;
+
+    email = e.target.value;
+});
+
+passwordInputElement.addEventListener("change", function(e: any) {
+    if (e.target === null) return;
+
+    password = e.target.value;
+});
+
+form.onsubmit = (e) => {
+    e.preventDefault();
+}
+
+button[0].addEventListener("click", (e) => {
+    console.log(email, password, chosenValue);
+
+    // console.log(result);
+    result[0].innerHTML = `
+        <p> ${email} </p>
+        <p> ${password} </p>
+        <h1> You have chosen ${chosenValue} </h1>
+    `;
+});
