@@ -1,63 +1,122 @@
-class Human {
-    private _id: string;
-    private _firstname: string;
-    private _lastname: string;
-    private _age: number;
-    private _isMarried: boolean;
-    private _birthday: Date;
+// POLIMORFIZM
+
+// HERMETYZACJA
+// public private protected
+
+interface IWhereAmILiving {
+    location: string,
+    showMe(): () => string,
+}
+
+abstract class Animal {
+    constructor(
+        protected _weight: number,
+        protected _height: number,
+        protected _color: string
+    ) {}
+
+    whoAreYou(): void {}
+}
+
+abstract class Dog extends Animal {
 
     constructor(
-        id: string,
-        firstname: string,
-        lastname: string,
-        age: number,
-        isMarried: boolean,
-        birthday: Date,
+        protected _weight: number,
+        protected _height: number,
+        protected _color: string,
+        public isHappy: boolean,
     ) {
-        this._id = id;
-        this._firstname = firstname;
-        this._lastname = lastname;
-        this._age = age;
-        this._isMarried = isMarried;
-        this._birthday = birthday;
+        super(_weight, _height, _color);
     }
 
-    /*
-        constructor(
-            private _id: string,
-            private _firstname: string,
-            private _lastname: string,
-            private _age: number,
-            private _isMarried: boolean,
-            private _birthday: Date,
-        ) {}
-    */
+    bark() {}
 
-    get id() {
-        return this._id;
+    run() {}
+}
+
+abstract class Cat extends Animal {
+
+    constructor(
+        protected _weight: number,
+        protected _height: number,
+        protected _color: string,
+        public isSleepy: boolean,
+    ) {
+        super(_weight, _height, _color);
+    }
+    
+    mu() {}
+
+    run() {}   
+}
+
+abstract class Fish extends Animal {
+
+    constructor(
+        protected _weight: number,
+        protected _height: number,
+        protected _color: string,
+        public isDead: boolean,
+    ) {
+        super(_weight, _height, _color);
+    }
+    
+    moveUp() {}
+
+    moveDown() {}
+
+    swim() {}
+}
+
+
+// static
+// readonly
+class Wolf extends Dog implements IWhereAmILiving {
+    static counter: number = 0;
+
+    constructor(
+        public _weight: number,
+        public _height: number,
+        public _color: string,
+        public isHappy: boolean,
+        public location: string,
+        public readonly _name: string,
+    ) {
+        super(_weight, _height, _color, isHappy);
+
+        console.log(Wolf.counter);
+        Wolf.counter++;
+        console.log(Wolf.counter);
+    }
+    
+    get name() {
+        return this._name;
     }
 
-    get firstname() {
-        return this._firstname;
+    showMe(): () => string {
+        throw new Error("Method not implemented.");
     }
 
-    get lastname() {
-        return this._lastname;
+    bark() {
+        console.log("AUUU");
     }
 
-    set firstname(s: string) {
-        this._firstname = s;
+    run() {
+        console.log("I run to forest!");
     }
 
-    set lastname(s: string) {
-        this._lastname = s;
+    whoAreYou() {
+        console.log("I am wolf!!!");
+    }
+
+    static convertToJSON() {
+        return {};
     }
 }
 
-const human = new Human("1", "John", "Smith", 30, false, new Date());
+const wolf1 = new Wolf(200, 100, "red", true, "Taiga", "Lloyd");
+const wolf2 = new Wolf(200, 100, "red", true, "Taiga", "Lloyd");
+const wolf3 = new Wolf(200, 100, "red", true, "Taiga", "Lloyd");
+const wolf4 = new Wolf(200, 100, "red", true, "Taiga", "Lloyd");
 
-console.log(human.firstname);
-
-human.firstname = "Empty string";
-
-console.log(human.firstname);
+console.log(Wolf.counter);
