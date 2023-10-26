@@ -1,12 +1,10 @@
 class Human {
-    // public, private, protected
-
-    public id: string;
-    public firstname: string;
-    protected lastname: string;
-    public age: number;
-    private isMarried: boolean;
-    private birthday: Date;
+    private _id: string;
+    private _firstname: string;
+    private _lastname: string;
+    private _age: number;
+    private _isMarried: boolean;
+    private _birthday: Date;
 
     constructor(
         id: string,
@@ -16,23 +14,50 @@ class Human {
         isMarried: boolean,
         birthday: Date,
     ) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.age = age;
-        this.isMarried = isMarried;
-        this.birthday = birthday;
+        this._id = id;
+        this._firstname = firstname;
+        this._lastname = lastname;
+        this._age = age;
+        this._isMarried = isMarried;
+        this._birthday = birthday;
+    }
+
+    /*
+        constructor(
+            private _id: string,
+            private _firstname: string,
+            private _lastname: string,
+            private _age: number,
+            private _isMarried: boolean,
+            private _birthday: Date,
+        ) {}
+    */
+
+    get id() {
+        return this._id;
+    }
+
+    get firstname() {
+        return this._firstname;
+    }
+
+    get lastname() {
+        return this._lastname;
+    }
+
+    set firstname(s: string) {
+        this._firstname = s;
+    }
+
+    set lastname(s: string) {
+        this._lastname = s;
     }
 }
 
-const john: Human = new Human(
-    "1",
-    "John",
-    "Smith",
-    40,
-    false,
-    new Date(),
-);
+const human = new Human("1", "John", "Smith", 30, false, new Date());
 
-console.log(john);
-console.log(john.id);
+console.log(human.firstname);
+
+human.firstname = "Empty string";
+
+console.log(human.firstname);
