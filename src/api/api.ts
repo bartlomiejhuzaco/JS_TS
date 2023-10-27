@@ -7,32 +7,35 @@ export default class API {
 
     constructor() {}
 
-    async sendToAPI(kind: EAPIKinds): Promise<Character[]> {
-        try {
-            const characters: Character[] = [];
+    sendToAPI(kind: EAPIKinds): Promise<Character[]> {
+        const characters: Character[] = [];
 
-            switch(kind) {
-                case EAPIKinds.CHARACTER:
-                case EAPIKinds.EPISODE:
-                case EAPIKinds.LOCATION:
-                    break;
-                default:
-                    return [];
-            }
-
-            const response = await fetch(`${API.link}${kind}`);
-            const data = await response.json();
-
-            for (let i = 0; i < data.results.length; i++) {
-                characters.push(Character.createCharacter(data.results[i]));
-            }
-
-            return characters;
-        } catch(err) {
-            console.error(err);
-            return [];
-        } finally {
-            alert("Finally!");
+        switch(kind) {
+            case EAPIKinds.CHARACTER:
+            case EAPIKinds.EPISODE:
+            case EAPIKinds.LOCATION:
+                break;
+            default:
+                return new Promise((_, __) => []);
         }
+
+        return fetch(`${API.link}${kind}`)
+            .then((response) => response.json())
+            .then((data) => {
+                for (let i = 0; i < data.results.length; i++) {
+                    characters.push(Character.createCharacter(data.results[i]));
+                }
+
+                return characters;
+            })
+            .catch((err) => {
+                console.error("Błąd w aplikacji!");
+                console.error(err);
+
+                return [];
+            })
+            .finally(() => {
+                console.log("JUST FINISHED! Finally!");
+            });
     }
 }
