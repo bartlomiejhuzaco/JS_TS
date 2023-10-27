@@ -1,29 +1,36 @@
-import API from "./api/api.js";
-import Card from "./components/card.js";
-import { EAPIKinds } from "./enums/api_kinds.js";
+// ... -> Spread operator
 
-// SEND TO API
-const api: API = new API();
+const arr: string[] = ["a", "b", "c", "d", "e", "f"];
 
-async function sendAPI() {
-    const data = await api.sendToAPI(EAPIKinds.CHARACTER);
+console.log(arr);
 
-    const cardsElement: HTMLDivElement = document.getElementById("cards") as HTMLDivElement;
+const arr2 = ["g", "h", "i", ...arr];
 
-    for (let i = 0; i < data.length ; i++) {
-        cardsElement.innerHTML = cardsElement.innerHTML + Card(data[i]);
-    }
+console.log(arr2 === arr);
 
-    alert("JUST FINISHED");
-}
+console.log(arr2);
 
-// CREATE CHARACTERS
+const obj = {
+    email: "email@domain",
+    fullname: "Imie i nazwisko",
+    age: 50
+};
 
-// CREATE COMPONENTS
+const obj2 = {...obj};
+const obj3 = obj;
 
-// SHOW COMPONENTS
+console.log(obj2 === obj);
+console.log(obj3 === obj);
 
-const btn: HTMLButtonElement = document.getElementById("btn") as HTMLButtonElement;
-btn.addEventListener("click", async (event: any) => {
-    await sendAPI();
-});
+const { email, fullname, age } = obj;
+// const email = obj.email;
+console.log({...obj});
+console.log( email, fullname, age );
+
+// Object.entries(obj).forEach(([key, value]: [string, string | number]) => {
+//     console.log(key, value);
+// })
+
+Object.entries(obj).forEach((item: any) => {
+    console.log(item);
+})
