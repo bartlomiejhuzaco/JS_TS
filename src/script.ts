@@ -1,36 +1,13 @@
-// ... -> Spread operator
+let a = 10;
+let b = 1;
 
-const arr: string[] = ["a", "b", "c", "d", "e", "f"];
+try {
+    if (b === 0) throw new Error("Nie wolno dzielić przez 0!");
 
-console.log(arr);
-
-const arr2 = ["g", "h", "i", ...arr];
-
-console.log(arr2 === arr);
-
-console.log(arr2);
-
-const obj = {
-    email: "email@domain",
-    fullname: "Imie i nazwisko",
-    age: 50
-};
-
-const obj2 = {...obj};
-const obj3 = obj;
-
-console.log(obj2 === obj);
-console.log(obj3 === obj);
-
-const { email, fullname, age } = obj;
-// const email = obj.email;
-console.log({...obj});
-console.log( email, fullname, age );
-
-// Object.entries(obj).forEach(([key, value]: [string, string | number]) => {
-//     console.log(key, value);
-// })
-
-Object.entries(obj).forEach((item: any) => {
-    console.log(item);
-})
+    let result = a / b; // Infinity
+    console.log(result);
+} catch(err) {
+    console.error(err);
+} finally {
+    console.log("It's done");
+}
