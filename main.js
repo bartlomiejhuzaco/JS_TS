@@ -5,9 +5,9 @@ require('dotenv').config();
 const PORT = process.env.port || 3000;
 const app = express();
 
-app.get('/', (request, response) => {
-    response.send("Hello it's express.js app!");
-});
+const usersRouter = require('./router/users');
+
+app.use("/users", usersRouter);
 
 app.listen(PORT, () => {
     console.log(`Our app is listening on ${PORT} port`)
