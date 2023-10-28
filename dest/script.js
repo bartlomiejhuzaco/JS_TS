@@ -1,44 +1,33 @@
 "use strict";
-const person = {
-    iam: function () {
-        console.log(this);
-        console.log(this.name || "", this.email || "");
-    },
-    ilike: function (thing) {
-        console.log(this.name, " likes ", thing);
-    }
-};
-// person.iam();
-// class User {
-//     constructor(
-//         public id: string,
-//         public name: string,
-//     ) {}
-//     toString() {
-//         console.log(this);
-//         return this.id + " " + this.name;
-//     }
-// }
-// const u = new User("1", "Tom");
-// console.log(u.toString());
-// CALL, APPLY, BIND
-const person1 = {
-    name: "Tom",
-    email: "tom@gmail.com",
-};
-const person2 = {
-    name: "Artur",
-    email: "artur@gmail.com",
-};
-// CALL
-// person.iam.call(person1); // this -> person
-// person.iam.call(person2); // this -> person
-person.ilike.call(person1, "books"); // this -> person
-// APPLY
-// person.iam.apply(person1); // this -> person
-// person.iam.apply(person2); // this -> person
-const argsILikeFunc = ['books'];
-person.ilike.apply(person1, argsILikeFunc); // this -> person
-// BIND
-const ilike = person.ilike.bind(person2, "books");
-ilike();
+// const date: Date = new Date();
+// // console.log(date);
+// const day: string = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate().toString();
+// const month: string = (date.getMonth() + 1) < 10 ? `0${(date.getMonth() + 1)}` : (date.getMonth() + 1).toString();
+// const year: string = date.getFullYear().toString();
+// const hours: string = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours().toString();
+// const minutes: string = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes().toString();
+// const seconds: string = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds().toString();
+// // console.log(day, month, year);
+// const newDate: Date = new Date(`${year}-${month}-${day}`); // "YYYY-MM-DD"
+// // console.log(newDate);
+// // TIME
+// const newDateTime: Date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:${seconds}`); // "YYYY-MM-DDTHH:MM:SS"
+// // console.log(newDateTime);
+// // 1 Stycznia 1970
+// newDateTime.setTime(newDateTime.getTime() - 10 * 365.25 * 24 * 60 * 60 * 1000);
+// const time1 = newDateTime.getTime(); // STARSZY
+// // console.log(time1);
+// const time2 = new Date().getTime(); // MŁODSZY
+// console.log(time1 > time2); // czy jest młodsze time2
+// console.log(time1 < time2); // czy jest starsze time1
+// console.log(time1 === time2); // czy jest takie same
+const dateInput = document.getElementById("dateInput");
+const dateTimeInput = document.getElementById("dateTimeInput");
+dateInput.addEventListener("change", (event) => {
+    console.log(event.currentTarget.value);
+});
+dateTimeInput.addEventListener("change", (event) => {
+    console.log(event.currentTarget.value);
+    const d = new Date(event.currentTarget.value);
+    console.log(d);
+});

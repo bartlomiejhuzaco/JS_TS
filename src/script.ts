@@ -1,58 +1,44 @@
-const person: any = {
-    iam: function () {
-        console.log(this);
-        console.log(this.name || "", this.email || "");
-    },
-    ilike: function (thing: string) {
-        console.log(this.name, " likes ", thing);
-    }
-};
+// const date: Date = new Date();
+// // console.log(date);
 
-// person.iam();
+// const day: string = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate().toString();
+// const month: string = (date.getMonth() + 1) < 10 ? `0${(date.getMonth() + 1)}` : (date.getMonth() + 1).toString();
+// const year: string = date.getFullYear().toString();
 
-// class User {
-//     constructor(
-//         public id: string,
-//         public name: string,
-//     ) {}
+// const hours: string = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours().toString();
+// const minutes: string = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes().toString();
+// const seconds: string = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds().toString();
 
-//     toString() {
-//         console.log(this);
-//         return this.id + " " + this.name;
-//     }
-// }
+// // console.log(day, month, year);
 
-// const u = new User("1", "Tom");
-// console.log(u.toString());
+// const newDate: Date = new Date(`${year}-${month}-${day}`); // "YYYY-MM-DD"
+// // console.log(newDate);
 
-// CALL, APPLY, BIND
+// // TIME
+// const newDateTime: Date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:${seconds}`); // "YYYY-MM-DDTHH:MM:SS"
+// // console.log(newDateTime);
 
-const person1 = {
-    name: "Tom",
-    email: "tom@gmail.com",
-};
+// // 1 Stycznia 1970
+// newDateTime.setTime(newDateTime.getTime() - 10 * 365.25 * 24 * 60 * 60 * 1000);
 
-const person2 = {
-    name: "Artur",
-    email: "artur@gmail.com",
-};
+// const time1 = newDateTime.getTime(); // STARSZY
+// // console.log(time1);
 
-// CALL
+// const time2 = new Date().getTime(); // MŁODSZY
 
-// person.iam.call(person1); // this -> person
-// person.iam.call(person2); // this -> person
+// console.log(time1 > time2); // czy jest młodsze time2
+// console.log(time1 < time2); // czy jest starsze time1
+// console.log(time1 === time2); // czy jest takie same
 
-person.ilike.call(person1, "books"); // this -> person
+const dateInput = document.getElementById("dateInput") as HTMLInputElement;
+const dateTimeInput = document.getElementById("dateTimeInput") as HTMLInputElement;
 
-// APPLY
+dateInput.addEventListener("change", (event: any) => {
+    console.log(event.currentTarget.value)
+})
 
-// person.iam.apply(person1); // this -> person
-// person.iam.apply(person2); // this -> person
-
-const argsILikeFunc: string[] = ['books'];
-person.ilike.apply(person1, argsILikeFunc); // this -> person
-
-// BIND
-
-const ilike = person.ilike.bind(person2, "books");
-ilike();
+dateTimeInput.addEventListener("change", (event: any) => {
+    console.log(event.currentTarget.value);
+    const d: Date = new Date(event.currentTarget.value);
+    console.log(d);
+})
